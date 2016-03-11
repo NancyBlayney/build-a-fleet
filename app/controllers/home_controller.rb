@@ -2,9 +2,9 @@ class HomeController < ApplicationController
 	
 	def index
 		if current_user
-			flash[:notice] = "Signed in"
+			@boats = Boat.where(user_id:[:current_user])
 		else
-			flash[:notice] = "not signed in"
+			redirect_to '/users/sign_in'
 		end
 	end
 

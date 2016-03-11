@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	has_many :boats
 	validates :name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

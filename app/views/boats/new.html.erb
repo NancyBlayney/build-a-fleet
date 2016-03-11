@@ -1,9 +1,12 @@
 <%= form_for @boat do |f| %>
+	<%= f.hidden_field :user_id, :value => @boat.user %>
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 	<%= f.label :capacity %>
 	<%= number_field(:boat, :capacity, in: 400..2000, step: 1) %>
 	<%= f.label :current_location %>
-	<%= f.text_field :current_location %>
+	<%= f.collection_select :current_location, Boat::LOCATIONS, :to_s, :to_s, 
+       :include_blank => false
+  %>
 	<%= f.submit :create %>
 <% end %>
