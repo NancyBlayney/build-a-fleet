@@ -1,4 +1,15 @@
-<%= @boat.name %>
-<%= @boat.jobs.first.name %>
+<h1>Boat Profile</h1>
 
+<h2>Name: <%= @boat.name %></h2>
+<h4>Jobs</h4>
+<% if @boat.jobs.any? %>
+<% @boat.jobs.each do |job| %>
+	Job Name: <%= job.name %> <%= link_to "Job Description", [@boat, job] if current_user%>
+<% end %>
+<% else %>
+	No jobs assigned to <%= @boat.name %> yet.
+<% end %>
+<br><br><br><br>
+
+<h3>Add a new job to <%= @boat.name %>'s itinerary!</h3>
 <%= render 'shared/new' %>

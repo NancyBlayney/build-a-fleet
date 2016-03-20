@@ -1,23 +1,29 @@
 class JobsController < ApplicationController
 	def index
-		@jobs = Jobs.all
+		@boat = Boat.find(params[:boat_id])
+		@jobs = Boat.jobs
 	end
 
 	def new
-		@job = Job.new
-		@boat = Boat.find(params[:id])
+		@boat = Boat.find(params[:boat_id])
+		@job = @boat.jobs.build
 	end
 
 	def create
 		@boat = Boat.find(params[:boat_id])
-		@job = @boat.jobs.new(job_params)
+		@job = @boat.jobs.build(job_params)
 			if @job.save
 				flash[:notice] = "Job was created"
-				redirect_to '/boats/#{boat.id}'
+				redirect_to boat_path(@boat)
 			else
-				flash[:alert] = "There was a problem creating your job"
+				flash.now[:error] = @job.errors.full_messages
 				render 'new'
 			end
+	end
+
+	def show
+		@boat = Boat.find(params[:boat_id])
+		@job = get_job
 	end
 
 	def edit

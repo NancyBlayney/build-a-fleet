@@ -10,11 +10,21 @@
  
    <p class="notice"><%= notice %></p>
    <p class="alert"><%= alert %></p>
-
-   <%= link_to "Sign Out", destroy_user_session_path, :method => :delete if current_user%>
-<%= link_to "Sign In", '/users/sign_in', :method => :create if !current_user%>
-<%= link_to "Sign Up", '/users/sign_up' if !current_user %>
+  
+  <% if flash[:error] %>
+    <% flash[:error].each do |error|%>
+      <%= error %><br />
+    <% end %>
+  <% end %>
 <br><br>
+  <%= link_to "Profile", '/' if current_user%>
+  <%= link_to "Boats", boats_path if current_user%>
+  <%= link_to "Add a Boat to your Fleet", new_boat_path if current_user%>
+	<%= link_to "Sign In", '/users/sign_in', :method => :create if !current_user%>
+	<%= link_to "Sign Up", '/users/sign_up' if !current_user %>
+
+<br><br>
+
 		<%= yield %>
 
 </body>

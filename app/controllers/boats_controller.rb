@@ -9,18 +9,18 @@ class BoatsController < ApplicationController
 
 	def create
 		@boat = Boat.create(boat_params)
-		@boat.user = current_user
+		@boat.user_id = current_user.id
 			if @boat.save
 				flash[:notice] = "Boat added to your fleet"
 				redirect_to '/boats'
 			else
-				flash[:alert] = "There was a problem building your boat"
+				flash.now[:error] = @boat.errors.full_messages
 				render 'new'
 			end
 	end
 
 	def show
-		@boat = Boat.find(params[:id])
+		@boat = get_boat
 		@jobs = @boat.jobs
 		@job = Job.new
 	end
