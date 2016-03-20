@@ -20,6 +20,7 @@
   <%= link_to "Profile", '/' if current_user%>
   <%= link_to "Boats", boats_path if current_user%>
   <%= link_to "Add a Boat to your Fleet", new_boat_path if current_user%>
+  <%= link_to "Sign Out", destroy_user_session_path, :method => :delete if current_user%>
 	<%= link_to "Sign In", '/users/sign_in', :method => :create if !current_user%>
 	<%= link_to "Sign Up", '/users/sign_up' if !current_user %>
 
