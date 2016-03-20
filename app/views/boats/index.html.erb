@@ -1,6 +1,7 @@
 <h1>Boat Inventory</h1>
 
 <% @boats.each do |boat|%>
-	<%= boat.name %>
-	<%= boat.user_id %><br>
+	The <strong><%= link_to boat.name, boat_path(boat) %></strong>
+	is captained by: 
+	<%= boat.user.name %><br>
 <% end %>

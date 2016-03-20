@@ -4,7 +4,7 @@
 <h4>Jobs</h4>
 <% if @boat.jobs.any? %>
 <% @boat.jobs.each do |job| %>
-	Job Name: <%= job.name %> <%= link_to "Job Description", [@boat, job] if current_user%>
+	Job Name: <%= link_to job.name, [@boat, job] if current_user%><br>
 <% end %>
 <% else %>
 	No jobs assigned to <%= @boat.name %> yet.

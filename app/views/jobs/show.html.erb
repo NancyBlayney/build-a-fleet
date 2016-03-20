@@ -9,3 +9,7 @@
 <h3>Shipping from:</h3> <%= @job.origin %>
 <h3>Shipping to:</h3> <%= @job.destination %>
 <h3>Final price:</h3> $ <%= @job.price %><br>
+
+
+<br><br><br>
+Back to the <%=link_to @boat.name, boat_path(@boat) %>
